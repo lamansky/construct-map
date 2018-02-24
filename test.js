@@ -23,6 +23,16 @@ describe('constructMap()', function () {
     assert.strictEqual(arr[0], 1)
   })
 
+  it('should construct with the Array subclass of the object provided', function () {
+    class XArray extends Array {}
+    const xarr1 = new XArray('a', 'b')
+    const xarr2 = constructMap(xarr1, xarr1[Symbol.iterator]())
+    assert.strictEqual(xarr2.constructor, XArray)
+    assert.strictEqual(xarr2.length, 2)
+    assert.strictEqual(xarr2[0], 'a')
+    assert.strictEqual(xarr2[1], 'b')
+  })
+
   it('should construct a Map containing the given entries', function () {
     const map1 = new Map([['a', 1]])
     const map2 = constructMap(map1, map1.entries())

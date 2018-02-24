@@ -13,6 +13,17 @@ module.exports = function constructMap (Cls, entries = []) {
   if (Cls.name === 'Object') return newObject(entries)
 
   entries = Array.from(entries)
-  if (is(Cls, ['Array', 'Set', typedArrays, 'WeakSet']) && entries.every(entry => isArrayOfLength(entry, 2))) entries = entries.map(entry => entry[1])
-  return is(Cls, 'Array') ? entries : new Cls(entries)
+  if (is(Cls, ['Array', 'Set', typedArrays, 'WeakSet']) && entries.every(entry => isArrayOfLength(entry, 2))) {
+    entries = entries.map(entry => entry[1])
+  }
+
+  if (Cls.name === 'Array') return entries
+
+  if (is(Cls, 'Array')) {
+    const arr = new Cls()
+    arr.push(...entries)
+    return arr
+  }
+
+  return new Cls(entries)
 }
