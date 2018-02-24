@@ -1,6 +1,6 @@
 {
   "name": "construct-map",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Turns entries into a Map or other key-value collection.",
   "keywords": [
     "construct",
