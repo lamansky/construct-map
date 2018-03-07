@@ -4,8 +4,28 @@ const assert = require('assert')
 const constructMap = require('.')
 
 describe('constructMap()', function () {
+  it('should construct an Array if an Array is provided', function () {
+    assert(Array.isArray(constructMap([])))
+  })
+
+  it('should construct an Array if the Array class is provided', function () {
+    assert(Array.isArray(constructMap(Array)))
+  })
+
+  it('should construct an Array if an `Array` string is provided', function () {
+    assert(Array.isArray(constructMap('Array')))
+  })
+
   it('should construct a Map if a Map is provided', function () {
     assert.strictEqual(constructMap(new Map()).constructor, Map)
+  })
+
+  it('should construct a Map if the Map class is provided', function () {
+    assert.strictEqual(constructMap(Map).constructor, Map)
+  })
+
+  it('should construct a Map if a `Map` string is provided', function () {
+    assert.strictEqual(constructMap('Map').constructor, Map)
   })
 
   it('should construct with the Map subclass of the object provided', function () {
@@ -15,6 +35,14 @@ describe('constructMap()', function () {
 
   it('should construct an Object if an Object is provided', function () {
     assert.strictEqual(constructMap({}).constructor, Object)
+  })
+
+  it('should construct an Object if the Object class is provided', function () {
+    assert.strictEqual(constructMap(Object).constructor, Object)
+  })
+
+  it('should construct an Object if an `Object` string is provided', function () {
+    assert.strictEqual(constructMap('Object').constructor, Object)
   })
 
   it('should construct an Array containing the given entries, ignoring indexes', function () {

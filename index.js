@@ -8,7 +8,8 @@ const typedArrays = require('typed-arrays').names()
 
 module.exports = function constructMap (Cls, entries = []) {
   if (isObject(Cls)) Cls = Cls.constructor
-  if (typeof Cls !== 'function') throw new TypeError('construct-map argument 1 must be object or function')
+  if (typeof Cls === 'string') Cls = global[Cls] // eslint-disable-line prefer-destructuring
+  if (typeof Cls !== 'function') throw new TypeError('construct-map argument 1 must be object, function, or global class name')
 
   if (Cls.name === 'Object') return newObject(entries)
 
