@@ -21,7 +21,7 @@ module.exports = function constructMap (Cls, entries = []) {
 
   if (is(Cls, 'Array')) {
     const arr = new Cls()
-    arr.push(...entries)
+    if (entries.length) arr.push(...entries)
     return arr
   }
 
